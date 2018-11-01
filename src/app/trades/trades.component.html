@@ -1,0 +1,153 @@
+<div class="trades main-container">
+  <div class="filter-container">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filters
+        </mat-panel-title>
+        <mat-panel-description>
+          <div class="filter-tags">
+            <div class="filter-tag trade-date">
+              <span class="item-legend"></span>
+              <span>09/01/18 -- 09/31/18</span>
+              <mat-icon>close</mat-icon>
+            </div>
+            <div class="filter-tag commodity" *ngIf="filterForm.value.commodities[0] !== 'ALL'" [class.error]="!filterForm.value.commodities.length">
+              <span class="item-legend"></span>
+              <span *ngIf="filterForm.value.commodities.length">{{filterForm.value.commodities}}</span>
+              <span *ngIf="!filterForm.value.commodities.length">Please select alteast one commodity</span>
+              <mat-icon>close</mat-icon>
+            </div>
+            <div class="filter-tag side" [class.error]="!filterForm.value.sides[0] && !filterForm.value.sides[1]">
+              <span class="item-legend"></span>
+              <span>
+                <span *ngIf="filterForm.value.sides[0]">BUY</span>
+                <span *ngIf="filterForm.value.sides[0] && filterForm.value.sides[1]">,</span>
+                <span *ngIf="filterForm.value.sides[1]">SELL</span>
+                <span *ngIf="!filterForm.value.sides[0] && !filterForm.value.sides[1]">Please select atleast one side</span>
+              </span>
+              <mat-icon>close</mat-icon>
+            </div>
+            <div class="filter-tag counterparty" *ngIf="filterForm.value.counterparties[0] !== 'ALL'" [class.error]="!filterForm.value.counterparties.length">
+              <span class="item-legend"></span>
+              <span *ngIf="filterForm.value.counterparties.length">{{filterForm.value.counterparties}}</span>
+              <span *ngIf="!filterForm.value.counterparties.length">Please select alteast one counterparty</span>
+              <mat-icon>close</mat-icon>
+            </div>
+            <div class="filter-tag location" *ngIf="filterForm.value.locations[0] !== 'ALL'" [class.error]="!filterForm.value.locations.length">
+              <span class="item-legend"></span>
+              <span *ngIf="filterForm.value.locations.length">{{filterForm.value.locations}}</span>
+              <span *ngIf="!filterForm.value.locations.length">Please select alteast one location</span>
+              <mat-icon>close</mat-icon>
+            </div>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form class="filter-content" [formGroup]="filterForm">
+        <section class="filter-item mat-elevation-z1 trade-date">
+          <header>Trade Date</header>
+          <div class="filter-content">
+            <mat-form-field class="filter-field">
+              <input matInput [matDatepicker]="startTradeDate" placeholder="Trade Start Date" formControlName="fromDate">
+              <mat-datepicker-toggle matSuffix [for]="startTradeDate"></mat-datepicker-toggle>
+              <mat-datepicker #startTradeDate></mat-datepicker>
+            </mat-form-field>
+            <span class="filter-field">to</span>
+            <mat-form-field class="filter-field">
+              <input matInput [matDatepicker]="endTradeDate" placeholder="Trade End Date" formControlName="toDate">
+              <mat-datepicker-toggle matSuffix [for]="endTradeDate"></mat-datepicker-toggle>
+              <mat-datepicker #endTradeDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </section>
+        <section class="filter-item mat-elevation-z1 commodity">
+          <header>Commodity</header>
+          <div class="filter-content">
+            <mat-form-field class="filter-field">
+              <mat-select placeholder="Commodity" formControlName="commodities" multiple>
+                <mat-select-trigger>{{getSelectedItems('commodities')}}</mat-select-trigger>
+                <mat-option *ngFor="let commodity of commodityList" [value]="commodity.value" [disabled]="commodity.value !== 'ALL' && filterForm.value.commodities[0] === 'ALL'">{{commodity.value !==
+                  'ALL' ? commodity.value + ' -' : ''}} {{commodity.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </section>
+        <section class="filter-item mat-elevation-z1 side">
+          <header>Side</header>
+          <div class="filter-content">
+            <mat-checkbox class="filter-field" *ngFor="let item of filterForm.get('sides').controls; let i = index;"
+              [formControl]="item">{{sides[i]}}</mat-checkbox>
+          </div>
+        </section>
+        <section class="filter-item mat-elevation-z1 counterparty">
+          <header>Counterparty</header>
+          <div class="filter-content">
+            <mat-form-field class="filter-field">
+              <mat-select placeholder="Counterparty" formControlName="counterparties" multiple>
+                <mat-select-trigger>{{getSelectedItems('counterparties')}}</mat-select-trigger>
+                <mat-option *ngFor="let counterparty of counterpartyList" [value]="counterparty.value" [disabled]="counterparty.value !== 'ALL' && filterForm.value.counterparties[0] === 'ALL'">{{counterparty.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </section>
+        <section class="filter-item mat-elevation-z1 location">
+          <header>Location</header>
+          <div class="filter-content">
+            <mat-form-field class="filter-field">
+              <mat-select placeholder="Location" formControlName="locations" multiple>
+                <mat-select-trigger>{{getSelectedItems('locations')}}</mat-select-trigger>
+                <mat-option *ngFor="let location of locationList" [value]="location.value" [disabled]="location.value !== 'ALL' && filterForm.value.locations[0] === 'ALL'">{{location.value !== 'ALL' ?
+                  location.value + ' -' : ''}} {{location.text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </section>
+      </form>
+      <mat-action-row>
+        <button mat-button>Clear</button>
+        <button mat-raised-button color="accent">Search</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </div>
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+      <ng-container matColumnDef="tradeDate">
+        <th mat-header-cell *matHeaderCellDef> Trade Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.tradeDate | date:'MM/dd/yyyy'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="commodity">
+        <th mat-header-cell *matHeaderCellDef> Commodity </th>
+        <td mat-cell *matCellDef="let element"> {{element.commodity}} </td>
+      </ng-container>
+      <ng-container matColumnDef="side">
+        <th mat-header-cell *matHeaderCellDef> Side </th>
+        <td mat-cell *matCellDef="let element"> {{element.side}} </td>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Qty(MT) </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price(/MT) </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+      <ng-container matColumnDef="counterparty">
+        <th mat-header-cell *matHeaderCellDef> Counterparty </th>
+        <td mat-cell *matCellDef="let element"> {{element.counterparty}} </td>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let trade; columns: displayedColumns;" (click)="showTradeDetails(trade)"></tr>
+    </table>
+  </div>
+</div>
+<div class="panel-background" [class.show]="showTradePanel" (click)="toggleTradePanel(showTradePanel)"></div>
+<div class="trade-panel mat-elevation-z5" [class.show]="showTradePanel">
+  <trade-panel [trade]="selectedTrade"></trade-panel>
+</div>
+<button mat-fab class="add-trade" [class.close]="showTradePanel" color="accent" (click)="toggleTradePanel(showTradePanel)">
+  <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,21 @@
+<header class="main-header mat-elevation-z6">
+  <div class="docs-navbar">
+    <span class="app-name">
+      <a mat-button class="docs-button" aria-label="MeanMat">MEAN-MAT</a>
+    </span>
+    <nav mat-tab-nav-bar [color]="'accent'" [backgroundColor]="'primary'">
+      <a mat-tab-link *ngFor="let link of links" [routerLink]="link" routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive"> {{link | uppercase}} </a>
+    </nav>
+    <div class="flex-spacer"></div>
+    <a mat-button class="docs-button" aria-label="User">
+      <mat-icon>account_circle</mat-icon>
+      <span class="welcome-msg">WELCOME, USER!</span>
+    </a>
+  </div>
+</header>
+<div>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

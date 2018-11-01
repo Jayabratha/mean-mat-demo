@@ -1,0 +1,17 @@
+form {
+    padding: 20px 0;
+    .mat-form-field {
+        width: 100%;
+    }
+    label {
+        color: rgba(0, 0, 0, 0.54);
+    }
+    .side-option {
+        label {
+        vertical-align: middle
+        }
+        mat-radio-button {
+        padding: 20px 0 20px 20px;
+        }
+    }
+}

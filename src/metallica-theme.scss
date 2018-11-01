@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+@import './app/app-theme';
+
+@include mat-core();
+
+$metallica-primary: mat-palette($mat-grey, 900);
+$metallica-accent:  mat-palette($mat-amber, 600);
+
+$metallica-theme: mat-light-theme($metallica-primary, $metallica-accent);
+
+@include app-theme($metallica-theme);
+@include angular-material-theme($metallica-theme);

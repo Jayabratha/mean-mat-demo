@@ -1,0 +1,35 @@
+<header>Trade ID: 13468756</header>
+<form [formGroup]="tradeForm">
+  <mat-form-field class="form-field">
+    <input matInput [matDatepicker]="tradeDate" placeholder="Trade Date" formControlName="tradeDate">
+    <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
+    <mat-datepicker #tradeDate></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-select placeholder="Commodity" formControlName="commodity">
+        <mat-option *ngFor="let commodity of commodityList" [value]="commodity.value">{{commodity.value}} - {{commodity.text}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-radio-group class="side-option" formControlName="side">
+    <label>Side</label>
+    <mat-radio-button *ngFor="let side of sides" [value]="side">{{side}}</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field class="filter-field">
+    <mat-select placeholder="Counterparty" formControlName="counterparty">
+        <mat-option *ngFor="let counterparty of counterpartyList" [value]="counterparty.value">{{counterparty.text}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="filter-field">
+    <input matInput placeholder="Price (USD)" formControlName="price">
+  </mat-form-field>
+  <mat-form-field class="filter-field">
+    <input matInput placeholder="Quantity (MT)" formControlName="quantity">
+  </mat-form-field>
+  <mat-form-field class="filter-field">
+    <mat-select placeholder="Location" formControlName="location">
+      <mat-option *ngFor="let location of locationList" [value]="location.value">{{location.value}} - {{location.text}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+<button mat-raised-button color="accent">Save</button>
+<button mat-button>Cancel</button>
