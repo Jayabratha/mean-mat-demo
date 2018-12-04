@@ -1,45 +1,56 @@
-.table-container {
-    > table {
-      width: 100%;
-      margin: 5px 0;
-
-      .mat-row:hover {
-        cursor: pointer;
-        background: rgba(0, 0, 0, 0.04);
-      }
+::ng-deep .filter-container {
+    .mat-content {
+        flex-wrap: wrap;
+        .mat-expansion-panel-header-title {
+            align-items: center;
+        }
     }
-  }
-  
-  .add-trade {
+    button {
+      margin: 0 5px;
+    }
+}
+
+.table-container {
+    >table {
+        width: 100%;
+        margin: 5px 0;
+        .mat-row:hover {
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.04);
+        }
+    }
+}
+
+.add-trade {
     position: fixed;
     right: 30px;
     bottom: 30px;
     .mat-icon {
-      transform: rotate(0deg);
-      transition: transform 0.2s ease-out;
+        transform: rotate(0deg);
+        transition: transform 0.2s ease-out;
     }
-  }
-  
-  .add-trade.close {
+}
+
+.add-trade.close {
     .mat-icon {
-      transform: rotate(45deg);
+        transform: rotate(45deg);
     }
-  }
-  
-  .panel-background {
+}
+
+.panel-background {
     position: fixed;
     top: 48px;
     width: 100%;
     height: 100%;
     background: #cccccc78;
     display: none;
-  }
-  
-  .panel-background.show {
+}
+
+.panel-background.show {
     display: block;
-  }
-  
-  .trade-panel {
+}
+
+.trade-panel {
     position: fixed;
     top: 48px;
     height: 100%;
@@ -51,120 +62,124 @@
     transform: translate(350px, 0);
     transition: transform 0.3s ease-out;
     overflow: auto;
-  }
-  
-  .trade-panel.show {
+}
+
+.trade-panel.show {
     transform: translate(0, 0);
-  }
-  
-  
-  .filter-container {
-    mat-panel-title {
-      align-items: center;
-    }
-    mat-panel-description {
-      flex-grow: 9;
-    }
-  }
-  
-  .filter-tags {
+}
+
+.filter-tags {
     display: flex;
     flex-grow: 1;
     justify-content: flex-end;
     .filter-tag {
-      background: #f0f0f0;
-      height: 30px;
-      min-width: 50px;
-      border-radius: 15px;
-      line-height: 30px;
-      text-align: center;
-      font-size: 12px;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      margin: 0 5px;
-
-      >* {
-        margin-left: 10px;
-      }
-
-      >*:last-child {
-        margin-right: 10px;
-      }
-
-      .item-legend {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-      }
-
-      .mat-icon {
-        font-size: 17px;
-        height: 17px;
-        width: 17px;
-      }
+        background: #f0f0f0;
+        height: 30px;
+        min-width: 50px;
+        border-radius: 15px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0 5px;
+        >* {
+            margin-left: 10px;
+        }
+        >*:last-child {
+            margin-right: 10px;
+        }
+        .item-legend {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .mat-icon {
+            font-size: 17px;
+            height: 17px;
+            width: 17px;
+        }
     }
     .filter-tag.error {
-      background: #fdb8b8;
+        background: #fdb8b8;
     }
     .filter-tag.trade-date .item-legend {
-      background: #f66572;
+        background: #f66572;
     }
     .filter-tag.commodity .item-legend {
-      background: #e24dd6;
+        background: #e24dd6;
     }
     .filter-tag.side .item-legend {
-      background: #65d1af;
+        background: #65d1af;
     }
     .filter-tag.counterparty .item-legend {
-      background: #8482ea;
+        background: #8482ea;
     }
     .filter-tag.location .item-legend {
-      background: #fdab70;
+        background: #fdab70;
     }
-  }
-  
-  .filter-content {
+}
+
+.filter-content {
     font-size: 14px;
     display: flex;
     flex-wrap: wrap;
     .filter-item {
-      margin: 5px;
-      background: #FFFFFF;
-      border-radius: 2px;
-      padding: 15px;
-      header {
-        padding-bottom: 5px;
-      }
-      .filter-content {
-        display: flex;
-        height: 90%;
-        align-items: center;
-      }
-      .filter-field {
-        max-width: 140px;
-        padding: 0 5px;
-      }
-      .filter-field:first-child {
-        padding-left: 0;
-      }
-      .filter-field:last-child {
-        padding-right: 0;
-      }
+        margin: 5px;
+        background: #FFFFFF;
+        border-radius: 2px;
+        padding: 15px;
+        header {
+            padding-bottom: 5px;
+        }
+        .filter-content {
+            display: flex;
+            height: 90%;
+            align-items: center;
+        }
+        .filter-field {
+            max-width: 140px;
+            padding: 0 5px;
+        }
+        .filter-field:first-child {
+            padding-left: 0;
+        }
+        .filter-field:last-child {
+            padding-right: 0;
+        }
     }
     .filter-item.trade-date {
-      border-top: 2px solid #f66572;
+        border-top: 2px solid #f66572;
     }
     .filter-item.commodity {
-      border-top: 2px solid #e24dd6;
+        border-top: 2px solid #e24dd6;
     }
     .filter-item.side {
-      border-top: 2px solid #65d1af;
+        border-top: 2px solid #65d1af;
     }
     .filter-item.counterparty {
-      border-top: 2px solid #8482ea;
+        border-top: 2px solid #8482ea;
     }
     .filter-item.location {
-      border-top: 2px solid #fdab70;
+        border-top: 2px solid #fdab70;
     }
-}  
+}
+
+@media (max-width: 650px) {
+    .filter-tags {
+        .filter-tag {
+            min-width: 0;
+            width: 30px;
+            .item-legend {
+                margin: 0;
+            }
+            .item-content {
+                display: none;
+            }
+            mat-icon {
+                display: none;
+            }
+        }
+    }
+}

@@ -8,6 +8,7 @@
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
+      color: mat-color($primary); 
     }
   
     .main-header {
@@ -19,5 +20,27 @@
       .docs-navbar {
         background: mat-color($primary);
       }
+    }
+
+    .primary-background {
+        background-color: mat-color($primary);
+    }
+
+    .accent-background {
+      background-color: mat-color($accent);
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .form-button {
+      margin-top: 100px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Oswald", sans-serif;
+      color: mat-color($primary);
+      font-weight: lighter;
     }
   }

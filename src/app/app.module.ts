@@ -14,6 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { TradesComponent } from './trades/trades.component';
@@ -21,6 +23,10 @@ import { TransportsComponent } from './transports/transports.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TransfersComponent } from './transfers/transfers.component';
 import { TradePanelComponent } from './trades/trade-panel/trade-panel.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './shared/guards/auth-guard.service';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,10 @@ import { TradePanelComponent } from './trades/trade-panel/trade-panel.component'
     TradesComponent,
     TransportsComponent,
     TransfersComponent,
-    TradePanelComponent
+    TradePanelComponent,
+    LoginComponent,
+    RegisterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +56,11 @@ import { TradePanelComponent } from './trades/trade-panel/trade-panel.component'
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatMenuModule,
+    MatTooltipModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,95 @@
+.login-page {
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    header {
+        height: 225px;
+        background: #FFFFFF;
+    }
+    footer {
+        margin: 0 -20px;
+        padding: 20px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        background: #f0f0f0;
+        box-sizing: border-box;
+        .footer-text {
+            padding-bottom: 10px;
+        }
+    }
+}
+
+.main-app-name {
+    display: inline-block;
+    position: absolute;
+    left: 5%;
+    top: 165px;
+    box-sizing: border-box;
+    .logo {
+        width: 55px;       
+        display: inline-block;
+        vertical-align: middle;
+    }
+    h1 {
+        font-family: "Oswald", sans-serif;
+        margin: 0;        
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 30px;
+        color: #212121;
+        text-align: right;
+        padding-left: 10px;
+    }
+}
+
+.desc {
+    position: absolute;
+    top: 250px;
+    color: #FFFFFF;
+    left: 5%;
+}
+
+.login-form {
+    position: absolute;
+    padding: 20px;
+    box-sizing: border-box;
+    top: 100px;
+    height: 500px;
+    width: 400px;
+    background: #FFFFFF;
+    right: 5%;
+    border: thin solid #e3e3e3;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 900px) {
+    .main-app-name {
+        display: block;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding-top: 30px;
+        text-align: center;
+        .logo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        h1 {
+            color: #212121;
+            text-align: center;
+            font-size: 1.5em;
+            padding-left: 10px;
+        }
+    }
+    .login-form {
+        width: 90vw;
+        max-width: 400px;
+        height: 80vh;
+        margin: 0 auto;
+        right: 0;
+        left: 0;
+    }
+}

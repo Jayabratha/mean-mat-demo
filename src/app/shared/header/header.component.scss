@@ -1,0 +1,66 @@
+.docs-navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 16px;  
+    *:not(.mat-icon) {
+      font-family: "Oswald", sans-serif;
+    }
+    > .mat-button {
+      &:last-child {
+        margin-left: auto;
+      }
+    }
+  }
+  
+  .app-name {
+    display: flex;
+    align-items: center;
+    .logo {
+      height: 30px;
+    }
+  }
+  
+  .flex-spacer {
+    flex-grow: 1;
+  }
+  
+  .app-name {
+    margin: 0 40px 0 0;
+    > .mat-button {
+      font-size: 22px;
+    }
+  }
+  
+  main {
+    margin-top: 70px;
+  }
+  
+  .welcome-msg {
+    padding: 0 10px;
+  }
+  
+  @media (max-width: 900px) {
+    .main-header {
+      height: 84px;
+    }
+    .docs-navbar {
+      padding: 0;
+      > .mat-tab-nav-bar {
+        position: absolute;
+        width: 100%;
+        top: 35px;
+        left: 0;
+        .mat-tab-link {
+          width: 34%;
+        }
+      }
+      .welcome-msg {
+        display: none;
+      }
+    }
+    main {
+      margin-top: 100px;
+    }
+  }
+  

@@ -1,0 +1,27 @@
+<div class="login-page primary-background">
+  <header class="">
+    <div class="main-app-name">
+      <img class="logo" src="assets/js-logo.png" alt="JS Logo" />
+      <h1>MEAN-MICRO</h1>
+    </div>
+    <div class="desc">
+      A demo microservices app using MEAN stack technologies.
+    </div>
+  </header>
+  <div class="login-form">
+    <h2>LOGIN</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field class="full-width">
+        <input matInput type="text" formControlName="username" placeholder="Username">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" formControlName="password" placeholder="Password">
+      </mat-form-field>
+      <button mat-flat-button color="accent" class="form-button">Login</button>
+    </form>
+    <footer>
+      <div class="footer-text">Not yet a member?</div>
+      <button mat-stroked-button class="form-button">Register</button>
+    </footer>
+  </div> 
+</div>

@@ -26,6 +26,7 @@ export class TradesComponent implements OnInit {
   filterForm: any;
 
   sides = ['Buy', 'Sell'];
+  selectedSides = ['Buy', 'Sell'];
 
   commodityList = [
     { value: 'ALL', text: 'All Commodities' },
@@ -101,6 +102,17 @@ export class TradesComponent implements OnInit {
     }
 
     return selectString;
+  }
+
+  sideChange(sides) {
+    let sideValue = this.filterForm.get('sides').value;
+    this.selectedSides.length = 0;
+    sideValue.forEach((side, index) => {
+      if(side) {
+        this.selectedSides.push(this.sides[index]);
+      }     
+    });
+    console.log(this.selectedSides);
   }
 
   toggleTradePanel(showTradePanel) {
